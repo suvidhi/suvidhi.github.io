@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="manifest" href="/manifest.json">
+<script type="text/javascript">
+     var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[]};
+ clevertap.account.push({"id": "489-54K-RW5Z"});
+ (function () {
+		 var wzrk = document.createElement('script');
+		 wzrk.type = 'text/javascript';
+		 wzrk.async = true;
+		 wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
+		 var s = document.getElementsByTagName('script')[0];
+		 s.parentNode.insertBefore(wzrk, s);
+  })();
+</script>
+
+</head>
+<body>
+<script type="text/javascript">
+
+    function pushaddtocart()
+    {
+      clevertap.event.push("Added To Cart");
+      console.log("pussaddtocart");
+    }
+
+    function pushcharged()
+    {
+      clevertap.event.push("Charged", {
+        "Product name":"Casio Chronograph Watch",
+        "ts":new Date()
+      });
+      console.log("pushcharged");
+      clevertap.notifications.push({
+                "titleText":'Would you like to receive Push Notifications?',
+                "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
+                "okButtonText":'Sign me up!',
+                "rejectButtonText":'No thanks',
+                "okButtonColor":'#f28046',
+                "okCallback":function () {
+                        console.log("User clicked on ok on popup");
+                        },
+                "rejectCallback":function () {
+                        console.log("User clicked on reject on popup");
+                        },
+                "subscriptionCallback":function () {
+                        console.log("User subscribed for web push notifications");
+                        }
+              });
+
+
+    }
+
+    function pushlogout()
+    {
+      clevertap.event.push("Logout");
+      clevertap.logout();
+      console.log("pushlogout");
+    }
+
+
+    function pushapplaunched()
+    {
+      clevertap.event.push("App Launched");
+      console.log("pushapplaunched");
+    }
+</script>
+<button type="button" onclick="pushapplaunched()">App Launched</button>
+<br>
+<button type="button" onclick="pushaddtocart()">Add to Cart!</button>
+<br>
+<button type="button" onclick="pushcharged()">Charged!</button>
+<br>
+<button type="button" onclick="pushlogout()">Logout</button>
+</body>
+</html>
